@@ -1,0 +1,23 @@
+// fetch actual record from SCW
+rec = zoho.crm.getRecordById("custommodule2",input.scwid);
+// get related Kontakt-ID
+relatedcontact=rec.get("Kontakt_ID");
+relatedcontactint=relatedcontact.toLong();
+// fetch related Kontact-ID
+reccontact = zoho.crm.getRecordById("Contacts",relatedcontactint);
+relatedacc=reccontact.get("ACCOUNTID");
+relatedaccint=relatedacc.toLong();
+// update only, if related Kunde is not null
+if(relatedaccint  >  0)
+{
+	// update Kunde_ID in SCW
+	mp=map();
+	mp.put("Kunde_ID",relatedacc);
+	// benötige actual SCW ID as String
+	scwidstr=rec.get("CUSTOMMODULE2_ID");
+	updateResp = zoho.crm.updateRecord("custommodule2",scwidstr,mp);
+}
+info relatedcontactint;
+//info reccontact;
+info relatedaccint;
+info mp;
