@@ -14,6 +14,7 @@ if(relatedaccint  >  0)
 	mp=map();
 	mp.put("Kunde_ID",relatedacc);
 	// benötige actual SCW ID as String
+	// Änderung
 	scwidstr=rec.get("CUSTOMMODULE2_ID");
 	updateResp = zoho.crm.updateRecord("custommodule2",scwidstr,mp);
 }
